@@ -1,0 +1,4 @@
+
+#source /opt/rcux/1.0/environment-setup-aarch64-bowwil-linux
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-linux-gnu-
