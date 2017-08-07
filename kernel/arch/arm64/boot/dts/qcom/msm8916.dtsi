@@ -927,12 +927,7 @@
 			reg-names = "lpass-lpaif", "mic-iomux", "spkr-iomux";
 		};
 
-		sound: sound {
-			status = "disabled";
-			compatible = "qcom,apq8016-sbc-sndcard";
-			reg = <0x07702000 0x4>, <0x07702004 0x4>;
-			reg-names = "mic-iomux", "spkr-iomux";
-		};
+
 
 	        tcsr: syscon@1937000 {
 			compatible = "qcom,tcsr-msm8916", "syscon";
