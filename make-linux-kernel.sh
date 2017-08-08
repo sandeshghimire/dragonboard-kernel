@@ -1,7 +1,7 @@
 #!/bin/sh 
 
 cd kernel
-make defconfig distro.config
+#make defconfig distro.config
 make -j32
 make dtbs
 make savedefconfig 

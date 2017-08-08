@@ -375,39 +375,10 @@
 
 &blsp_i2c4 {
 	status = "ok";
-
-	adv_bridge: bridge@39 {
-		status = "ok";
-		compatible = "adi,adv7533";
-		reg = <0x39>;
-		interrupt-parent = <&msmgpio>;
-		interrupts = <31 2>;
-		avdd-supply = <&pm8916_l6>;
-		v3p3-supply = <&pm8916_l17>;
-		adi,dsi-lanes = <4>;
-		pd-gpios = <&msmgpio 32 0>;
-		pinctrl-names = "default","sleep";
-		pinctrl-0 = <&adv7533_int_active &adv7533_switch_active>;
-		pinctrl-1 = <&adv7533_int_suspend &adv7533_switch_suspend>;
-		#sound-dai-cells = <1>;
-
-		port {
-			adv_in: endpoint {
-				remote-endpoint = <&dsi_out>;
-			};
-		};
-
-	};
 };
 
 &mdss_dsi0 {
 	status = "ok";
-
-	port {
-		dsi_out: endpoint {
-			remote-endpoint = <&adv_in>;
-		};
-	};
 };
 
 &lpass {
@@ -444,4 +415,23 @@
 
 &vidc {
 	status = "okay";
+};
+/* On Low speed expansion */
+&blsp_spi5 {
+       status = "okay";
+       spidev@0 {
+               compatible = "spidev";
+               spi-max-frequency = <50000000>;
+               reg = <0>;
+       };
+};
+
+/* On High speed expansion */
+&blsp_spi3 {
+       status = "okay";
+       spidev@0 {
+               compatible = "spidev";
+               spi-max-frequency = <50000000>;
+               reg = <0>;
+       };
 };
