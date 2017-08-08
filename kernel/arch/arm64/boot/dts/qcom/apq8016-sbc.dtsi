@@ -419,26 +419,3 @@
 &vidc_rproc {
 	status = "okay";
 };
-
-&vidc {
-	status = "okay";
-};
-/* On Low speed expansion */
-&blsp_spi5 {
-       status = "okay";
-       spidev@0 {
-               compatible = "spidev";
-               spi-max-frequency = <50000000>;
-               reg = <0>;
-       };
-};
-
-/* On High speed expansion */
-&blsp_spi3 {
-       status = "okay";
-       spidev@0 {
-               compatible = "spidev";
-               spi-max-frequency = <50000000>;
-               reg = <0>;
-       };
-};
