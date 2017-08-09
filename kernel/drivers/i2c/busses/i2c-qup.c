@@ -865,6 +865,7 @@ static int qup_i2c_req_dma(struct qup_i2c_dev *qup)
 	if (!qup->btx.dma_tx) {
 		qup->btx.dma_tx = dma_request_slave_channel(qup->dev, "tx");
 		if (!qup->btx.dma_tx) {
+			dev_err(qup->dev, "\n tx bowers and wilkins");
 			dev_err(qup->dev, "\n tx channel not available");
 			return -ENODEV;
 		}

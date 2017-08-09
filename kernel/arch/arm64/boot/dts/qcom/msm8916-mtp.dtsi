@@ -38,9 +38,6 @@
 	status = "okay";
 };
 
-&blsp_spi3 {
-	status = "okay";
-};
 
 &sdhc_1 {
 	vmmc-supply = <&pm8916_l8>;

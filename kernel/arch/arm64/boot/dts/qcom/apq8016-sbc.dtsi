@@ -28,8 +28,6 @@
 		i2c1	= &blsp_i2c6;
 		i2c2	= &blsp_i2c5;
 		i2c3	= &blsp_i2c4;
-		spi0	= &blsp_spi5;
-		spi1	= &blsp_spi3;
 	};
 
 	chosen {
@@ -199,17 +197,6 @@
 			status = "okay";
 		};
 
-		i2c@78B5000 {
-		/* On High speed expansion */
-			label = "HS-I2C3";
-			status = "okay";
-		};
-
-		spi@78b9000 {
-		/* On Low speed expansion */
-			label = "LS-SPI0";
-			status = "okay";
-		};
 
 		leds {
 			pinctrl-names = "default";
@@ -303,24 +290,6 @@
 	status = "okay";
 };
 
-&blsp_spi3 {
-	status = "okay";
-	spidev@0 {
-        compatible = "spidev";
-        spi-max-frequency = <50000000>;
-        reg = <0>;
-       };
-};
-
-&blsp_spi5 {
-	status = "okay";
-	spidev@0 {
-        compatible = "spidev";
-        spi-max-frequency = <50000000>;
-        reg = <0>;
-       };
-};
-
 &sdhc_1 {
 	vmmc-supply = <&pm8916_l8>;
 	vqmmc-supply = <&pm8916_l5>;
@@ -377,6 +346,11 @@
 &blsp_i2c4 {
 	status = "ok";
 };
+
+&blsp_i2c5 {
+	status = "ok";
+};
+
 
 
 &mdss_dsi0 {
