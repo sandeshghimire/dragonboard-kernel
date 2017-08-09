@@ -347,9 +347,7 @@
 	status = "ok";
 };
 
-&blsp_i2c5 {
-	status = "ok";
-};
+
 
 
 
