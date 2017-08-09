@@ -342,9 +342,9 @@
 		};
 	};
 
-	cci0_default: cci0_default {
+	i2c5_default: i2c5_default {
 		pinmux {
-			function = "cci_i2c";
+			function = "blsp_i2c5";
 			pins = "gpio29", "gpio30";
 		};
 		pinconf {
@@ -353,9 +353,9 @@
 			bias-disable = <0>;
 		};
 	};
-	cci0_sleep: cci0_sleep {
+	i2c5_sleep: i2c5_sleep {
 		pinmux {
-			function = "cci_i2c";
+			function = "blsp_i2c5";
 			pins = "gpio29", "gpio30";
 		};
 		pinconf {

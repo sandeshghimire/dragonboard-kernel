@@ -200,13 +200,7 @@
 		};
 
 		i2c@78B5000 {
-		/* On Low speed expansion */
-			label = "HS-I2C3";
-			status = "okay";
-		};
-
-		i2c@78B9000 {
-		/* On Low speed expansion */
+		/* On High speed expansion */
 			label = "HS-I2C3";
 			status = "okay";
 		};

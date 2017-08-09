@@ -587,16 +587,31 @@
 			status = "disabled";
 		};
 
-		blsp_i2c5: i2c@78B9000 {
+		blsp_i2c5: i2c@78B5000 {
 			compatible = "qcom,i2c-qup-v2.2.1";
-			reg = <0x78B9000 0x1000>;
-			interrupts = <GIC_SPI 99 0>;
+			reg = <0x78B5000 0x1000>;
+			interrupts = <GIC_SPI 95 0>;
 			clocks = <&gcc GCC_BLSP1_AHB_CLK>,
 				<&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>;
 			clock-names = "iface", "core";
 			pinctrl-names = "default", "sleep";
-			pinctrl-0 = <&cci0_default>;
-			pinctrl-1 = <&cci0_sleep>;
+			pinctrl-0 = <&i2c5_default>;
+			pinctrl-1 = <&i2c5_sleep>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
+
+		blsp_i2c6: i2c@78ba000 {
+			compatible = "qcom,i2c-qup-v2.2.1";
+			reg = <0x78ba000 0x1000>;
+			interrupts = <GIC_SPI 100 0>;
+			clocks = <&gcc GCC_BLSP1_AHB_CLK>,
+				<&gcc GCC_BLSP1_QUP6_I2C_APPS_CLK>;
+			clock-names = "iface", "core";
+			pinctrl-names = "default", "sleep";
+			pinctrl-0 = <&i2c6_default>;
+			pinctrl-1 = <&i2c6_sleep>;
 			#address-cells = <1>;
 			#size-cells = <0>;
 			status = "disabled";
@@ -628,20 +643,7 @@
 			regulator-always-on;
 		};
 
-		blsp_i2c6: i2c@78ba000 {
-			compatible = "qcom,i2c-qup-v2.2.1";
-			reg = <0x78ba000 0x1000>;
-			interrupts = <GIC_SPI 100 0>;
-			clocks = <&gcc GCC_BLSP1_AHB_CLK>,
-				<&gcc GCC_BLSP1_QUP6_I2C_APPS_CLK>;
-			clock-names = "iface", "core";
-			pinctrl-names = "default", "sleep";
-			pinctrl-0 = <&i2c6_default>;
-			pinctrl-1 = <&i2c6_sleep>;
-			#address-cells = <1>;
-			#size-cells = <0>;
-			status = "disabled";
-		};
+
 
 		sdhc_1: sdhci@07824000 {
 			compatible = "qcom,sdhci-msm-v4";
