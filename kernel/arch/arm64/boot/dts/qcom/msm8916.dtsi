@@ -602,6 +602,8 @@
 			status = "disabled";
 		};
 
+		
+
 		camera_vdddo_1v8: fixedregulator@0 {
 			compatible = "regulator-fixed";
 			regulator-name = "camera_vdddo";

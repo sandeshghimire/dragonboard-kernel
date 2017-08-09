@@ -199,15 +199,15 @@
 			status = "okay";
 		};
 
-		i2c@78B7000 {
+		i2c@78B5000 {
 		/* On Low speed expansion */
 			label = "HS-I2C3";
 			status = "okay";
 		};
 
-		spi@78b7000 {
-		/* On High speed expansion */
-			label = "HS-SPI1";
+		i2c@78B9000 {
+		/* On Low speed expansion */
+			label = "HS-I2C3";
 			status = "okay";
 		};
 
