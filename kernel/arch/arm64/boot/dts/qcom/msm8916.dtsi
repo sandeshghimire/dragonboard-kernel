@@ -372,55 +372,8 @@
 					<29 512 0 0>,
 					<29 512 450000 900000>,
 					<29 512 11000 11000>;
-
-			ports {
-				#address-cells = <1>;
-				#size-cells = <0>;
-				port@0 {
-					reg = <0>;
-					csiphy0_ep: endpoint {
-						clock-lanes = <1>;
-						data-lanes = <0 2>;
-						qcom,settle-cnt = <0xe>;
-						remote-endpoint = <&ov5645_ep>;
-					};
-				};
-			};
 		};
 
-		cci: qcom,cci@1b0c000 {
-			cell-index = <0>;
-			compatible = "qcom,cci";
-			reg = <0x1b0c000 0x1000>;
-			#address-cells = <1>;
-			#size-cells = <0>;
-			reg-names = "cci";
-			interrupts = <GIC_SPI 50 0>;
-			interrupt-names = "cci";
-			clocks = <&gcc GCC_CAMSS_TOP_AHB_CLK>,
-				<&gcc CCI_CLK_SRC>,
-				<&gcc GCC_CAMSS_CCI_AHB_CLK>,
-				<&gcc GCC_CAMSS_CCI_CLK>,
-				<&gcc GCC_CAMSS_AHB_CLK>;
-			clock-names = "camss_top_ahb_clk",
-				"cci_src_clk",
-				"cci_ahb_clk",
-				"cci_clk",
-				"camss_ahb_clk";
-			qcom,clock-rates = <0 19200000 80000000 0 0>;
-			pinctrl-names = "default", "sleep";
-			pinctrl-0 = <&cci0_default>;
-			pinctrl-1 = <&cci0_sleep>;
-			i2c_freq_100Khz: qcom,i2c_standard_mode {
-				status = "disabled";
-			};
-			i2c_freq_400Khz: qcom,i2c_fast_mode {
-				status = "disabled";
-			};
-			i2c_freq_custom: qcom,i2c_custom_mode {
-				status = "disabled";
-			};
-		};
 
 		msmgpio: pinctrl@1000000 {
 			compatible = "qcom,msm8916-pinctrl";
@@ -634,6 +587,21 @@
 			status = "disabled";
 		};
 
+		blsp_i2c5: i2c@78B9000 {
+			compatible = "qcom,i2c-qup-v2.2.1";
+			reg = <0x78B9000 0x1000>;
+			interrupts = <GIC_SPI 99 0>;
+			clocks = <&gcc GCC_BLSP1_AHB_CLK>,
+				<&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>;
+			clock-names = "iface", "core";
+			pinctrl-names = "default", "sleep";
+			pinctrl-0 = <&cci0_default>;
+			pinctrl-1 = <&cci0_sleep>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "disabled";
+		};
+
 		camera_vdddo_1v8: fixedregulator@0 {
 			compatible = "regulator-fixed";
 			regulator-name = "camera_vdddo";
@@ -671,30 +639,6 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 			status = "disabled";
-			camera@78 {
-				compatible = "ovti,ov5645";
-				reg = <0x78>;
-
-				enable-gpios = <&msmgpio 34 0>;
-				reset-gpios = <&msmgpio 35 1>;
-				pinctrl-names = "default";
-				pinctrl-0 = <&camera_rear_default>;
-
-				clocks = <&gcc GCC_CAMSS_MCLK0_CLK>;
-				clock-names = "xclk";
-
-				vdddo-supply = <&camera_vdddo_1v8>;
-				vdda-supply = <&camera_vdda_2v8>;
-				vddd-supply = <&camera_vddd_1v5>;
-
-				port {
-					ov5645_ep: endpoint {
-						clock-lanes = <1>;
-						data-lanes = <0 2>;
-						remote-endpoint = <&csiphy0_ep>;
-					};
-				};
-			};
 		};
 
 		sdhc_1: sdhci@07824000 {
@@ -1285,47 +1229,7 @@
 	};
 };
 
-&i2c_freq_100Khz {
-	qcom,hw-thigh = <78>;
-	qcom,hw-tlow = <114>;
-	qcom,hw-tsu-sto = <28>;
-	qcom,hw-tsu-sta = <28>;
-	qcom,hw-thd-dat = <10>;
-	qcom,hw-thd-sta = <77>;
-	qcom,hw-tbuf = <118>;
-	qcom,hw-scl-stretch-en = <0>;
-	qcom,hw-trdhld = <6>;
-	qcom,hw-tsp = <1>;
-	status = "ok";
-};
 
-&i2c_freq_400Khz {
-	qcom,hw-thigh = <20>;
-	qcom,hw-tlow = <28>;
-	qcom,hw-tsu-sto = <21>;
-	qcom,hw-tsu-sta = <21>;
-	qcom,hw-thd-dat = <13>;
-	qcom,hw-thd-sta = <18>;
-	qcom,hw-tbuf = <32>;
-	qcom,hw-scl-stretch-en = <0>;
-	qcom,hw-trdhld = <6>;
-	qcom,hw-tsp = <3>;
-	status = "ok";
-};
-
-&i2c_freq_custom {
-	qcom,hw-thigh = <15>;
-	qcom,hw-tlow = <28>;
-	qcom,hw-tsu-sto = <21>;
-	qcom,hw-tsu-sta = <21>;
-	qcom,hw-thd-dat = <13>;
-	qcom,hw-thd-sta = <18>;
-	qcom,hw-tbuf = <25>;
-	qcom,hw-scl-stretch-en = <1>;
-	qcom,hw-trdhld = <6>;
-	qcom,hw-tsp = <3>;
-	status = "ok";
-};
 
 
 #include "msm8916-pins.dtsi"
